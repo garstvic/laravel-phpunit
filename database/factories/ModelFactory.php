@@ -37,3 +37,15 @@ $factory->define(App\Concert::class, function (Faker\Generator $faker) {
         'additional_information' => 'Some sample additional information.'
     ];
 });
+
+$factory->defineAs(App\Concert::class, 'published', function (Faker\Generator $faker) use ($factory) {
+    $issue = $factory->raw(App\Concert::class);
+    
+    return array_merge($issue, ['published_at' => Carbon::parse('-1 week')]);
+});
+
+$factory->defineAs(App\Concert::class, 'unpublished', function (Faker\Generator $faker) use ($factory) {
+    $issue = $factory->raw(App\Concert::class);
+    
+    return array_merge($issue, ['published_at' => null]);
+});
