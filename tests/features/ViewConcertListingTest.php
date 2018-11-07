@@ -1,5 +1,8 @@
 <?php
 
+use App\Concert;
+use Carbon\Carbon;
+
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -11,6 +14,9 @@ class ViewConcertListingTest extends TestCase
      *
      * @return void
      */
+    
+    use DatabaseMigrations;
+     
     /** @test */
     public function user_can_view_a_concert_listing()
     {
@@ -19,7 +25,7 @@ class ViewConcertListingTest extends TestCase
         // Create a concert
         
         $concert = Concert::create([
-            'title' => 'The Red Chord',
+            'title' => 'The Road Chord',
             'subtitle' => 'with Animosity and Lethargy',
             'date' => Carbon::parse('December 13, 2017 8:00pm'),
             'ticket_price' => 3250,
